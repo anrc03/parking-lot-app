@@ -23,16 +23,24 @@ namespace ParkingSystem
 
         public void Park(Vehicle vehicle)
         {
-            try
+            for (int i = 0; i < Slots.Length; i++)
             {
-                Slots[this.AllocatedSlot] = vehicle;
-                this.AllocatedSlot++;
-                Console.WriteLine($"Allocated slot number: {this.AllocatedSlot}\n");
+                if (Slots[i] == null) {
+                    Slots[i] = vehicle;
+                    Console.WriteLine($"Allocated slot number: {i+1}\n");
+                    break;
+                }
             }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Sorry, parking lot is full\n");
-            }
+            //try
+            //{
+            //    Slots[this.AllocatedSlot] = vehicle;
+            //    this.AllocatedSlot++;
+            //    Console.WriteLine($"Allocated slot number: {this.AllocatedSlot}\n");
+            //}
+            //catch (IndexOutOfRangeException)
+            //{
+            //    Console.WriteLine("Sorry, parking lot is full\n");
+            //}
         }
 
         public void ParkingStatus()

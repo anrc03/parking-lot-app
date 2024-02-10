@@ -7,9 +7,11 @@ namespace ParkingSystem
         static void Main(string[] args)
         {
             var car1 = new Car("B 2023 WOO", "white");
-            Console.WriteLine(car1.ToString());
+            Console.WriteLine("$create_parking_lot");
             var parkingLot = new ParkingLot(5);
+            Console.WriteLine("$park car");
             parkingLot.Park(car1);
+            Console.WriteLine("$status");
             parkingLot.ParkingStatus();
             
         }
