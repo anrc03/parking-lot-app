@@ -21,16 +21,19 @@ namespace ParkingSystem
 
         public void Park(Vehicle vehicle)
         {
+            Boolean allocated = false;
             for (int i = 0; i < Slots.Length; i++)
             {
                 if (Slots[i] == null)
                 {
                     Slots[i] = vehicle;
                     Console.WriteLine($"Allocated slot number: {i + 1}\n");
+                    allocated = true;
                     break;
                 }
-                else Console.WriteLine("Sorry, parking lot is full\n");
             }
+            if (!allocated) Console.WriteLine("Sorry, parking lot is full\n");
+
         }
 
         public void Leave(Vehicle vehicle)
@@ -103,6 +106,7 @@ namespace ParkingSystem
                 else Console.Write($", {slot}\n");
                 count++;
             }
+            Console.WriteLine();
         }
     }
 }
