@@ -82,5 +82,27 @@ namespace ParkingSystem
             }
             Console.WriteLine($"Motorcycle in parking lot: {count}\n");
         }
+
+        public void CheckColour(string colour)
+        {
+            int count = 1;
+            List<int> slots = new List<int>();
+            foreach (Vehicle vehicle in this.Slots)
+            {
+                if (vehicle != null)
+                {
+                    if (vehicle.Colour == colour) slots.Add(count);
+                }
+                count++;
+            }
+            count = 1;
+            Console.Write("Slots: ");
+            foreach (int slot in slots)
+            {
+                if (count == 1) Console.Write($"{slot}");
+                else Console.Write($", {slot}\n");
+                count++;
+            }
+        }
     }
 }
