@@ -17,10 +17,16 @@ namespace ParkingSystem
             Console.WriteLine("$status");
             parkingLot.ParkingStatus();
 
-            Console.WriteLine("$leave");
-            parkingLot.Leave(car1);
-            parkingLot.ParkingStatus();
-            
+            //Console.WriteLine("$leave");
+            //parkingLot.Leave(car1);
+            //parkingLot.ParkingStatus();
+
+            Console.WriteLine("$check_vehicle_count car");
+            parkingLot.CarCount();
+
+            Console.WriteLine("$check_vehicle_count motorcycle");
+            parkingLot.MotorcycleCount();
+
         }
     }
 }

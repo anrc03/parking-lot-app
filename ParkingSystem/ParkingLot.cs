@@ -57,5 +57,30 @@ namespace ParkingSystem
             Console.WriteLine();
         }
 
+        public void CarCount()
+        {
+            int count = 0;
+            foreach (Vehicle vehicle in this.Slots)
+            {
+                if (vehicle != null)
+                {
+                    if (vehicle.Type == "Car") count++;
+                }
+            }
+            Console.WriteLine($"Car in parking lot: {count}\n");
+        }
+
+        public void MotorcycleCount()
+        {
+            int count = 0;
+            foreach (Vehicle vehicle in this.Slots)
+            {
+                if (vehicle != null)
+                {
+                    if (vehicle.Type == "Motorcycle") count++;
+                }
+            }
+            Console.WriteLine($"Motorcycle in parking lot: {count}\n");
+        }
     }
 }
