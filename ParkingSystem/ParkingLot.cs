@@ -95,6 +95,7 @@ namespace ParkingSystem
 
         public void CheckColour(string colour)
         {
+            colour = colour.ToUpper();
             int count = 1;
             List<int> slots = new List<int>();
             foreach (Vehicle vehicle in this.Slots)
@@ -106,7 +107,7 @@ namespace ParkingSystem
                 count++;
             }
             count = 1;
-            Console.Write($"Slots of vehicle with colour {colour}: ");
+            Console.Write($"Allocated slot number of vehicle with colour {colour}: ");
             if (slots.Count == 0) Console.WriteLine("None");
             foreach (int slot in slots)
             {
@@ -124,7 +125,7 @@ namespace ParkingSystem
             {
                 if (vehicle != null)
                 {
-                    if (int.Parse(vehicle.LicenseNumber.Split("-")[1]) % 2 != 0) plate.Add(vehicle.LicenseNumber);
+                    if (int.Parse(vehicle.LicenseNumber.Split("-")[1]) % 2 == 0) plate.Add(vehicle.LicenseNumber);
                 }
             }
             Console.Write("List of license number with even plate: ");

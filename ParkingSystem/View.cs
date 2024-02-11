@@ -76,7 +76,7 @@ namespace ParkingSystem
         void PrintParkAVehicleMenu()
         {
             Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
+            Console.WriteLine("|+++++++ PARK A VEHICLE ++++++++|");
             Console.WriteLine("|-------------------------------|");
             Console.WriteLine("| 1. Park A Car                 |");
             Console.WriteLine("| 2. Park A Motorcycle          |");
@@ -115,9 +115,6 @@ namespace ParkingSystem
         {
             bool available = this.parkingLot.CheckIfParkingLotAvailable();
             if (available) {
-                Console.WriteLine("|-------------------------------|");
-                Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
-                Console.WriteLine("|-------------------------------|");
                 Console.WriteLine("Please enter your vehicle info");
                 string licenseNumber = Utility.HandlePlateInput("Enter license number (X-XXXX-XXX format): ");
                 string colour = Utility.HandleColourInput("Enter car colour: ");
@@ -131,9 +128,6 @@ namespace ParkingSystem
             bool available = this.parkingLot.CheckIfParkingLotAvailable();
             if (available)
             {
-                Console.WriteLine("|-------------------------------|");
-                Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
-                Console.WriteLine("|-------------------------------|");
                 Console.WriteLine("Please enter your vehicle info");
                 string licenseNumber = Utility.HandlePlateInput("Enter license number (X-XXXX-XXX format): ");
                 string colour = Utility.HandleColourInput("Enter motorcycle colour: ");
@@ -171,13 +165,15 @@ namespace ParkingSystem
         void PrintCheckInfoMenu()
         {
             Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
+            Console.WriteLine("|++++++++++++ INFO +++++++++++++|");
             Console.WriteLine("|-------------------------------|");
             Console.WriteLine("| 1. Parking lot status         |");
             Console.WriteLine("| 2. Vehicle with odd plate     |");
             Console.WriteLine("| 3. Vehicle with even plate    |");
             Console.WriteLine("| 4. Slot number by color       |");
-            Console.WriteLine("| 5. Back                       |");
+            Console.WriteLine("| 5. Number of car              |");
+            Console.WriteLine("| 6. Number of motorcycle       |");
+            Console.WriteLine("| 7. Back                       |");
             Console.WriteLine("|-------------------------------|");
         }
 
@@ -205,6 +201,12 @@ namespace ParkingSystem
                         this.parkingLot.CheckColour(colour);
                         break;
                     case "5":
+                        this.parkingLot.CarCount();
+                        break;
+                    case "6":
+                        this.parkingLot.MotorcycleCount();
+                        break;
+                    case "7":
                         return;
                     case "exit":
                         Environment.Exit(0);
