@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace ParkingSystem
 {
@@ -11,6 +13,7 @@ namespace ParkingSystem
     {
         public int Capacity {  get; }
         public Vehicle[] Slots { get; set; }
+
 
         public ParkingLot(int capacity)
         {
@@ -99,7 +102,8 @@ namespace ParkingSystem
                 count++;
             }
             count = 1;
-            Console.Write("Slots: ");
+            Console.Write($"Slots of vehicle with colour {colour}: ");
+            if (slots.Count == 0) Console.WriteLine("None");
             foreach (int slot in slots)
             {
                 if (count == 1) Console.Write($"{slot}");
@@ -107,6 +111,56 @@ namespace ParkingSystem
                 count++;
             }
             Console.WriteLine();
+        }
+
+        public void CheckEvenPlate()
+        {
+            List<string> plate = new List<string>();
+            foreach (Vehicle vehicle in this.Slots)
+            {
+                if (vehicle != null)
+                {
+                    if (int.Parse(vehicle.LicenseNumber.Split("-")[1]) % 2 != 0) plate.Add(vehicle.LicenseNumber);
+                }
+            }
+            Console.Write("List of license number with even plate: ");
+            if (plate.Count == 0 ) Console.WriteLine("None");
+            else
+            {
+                int count = 1;
+                foreach (var item in plate)
+                {
+                    if (count == 1) Console.Write($"{item}");
+                    else Console.Write($", {item}\n");
+                    count++;
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public void CheckOddPlate()
+        {
+            List<string> plate = new List<string>();
+            foreach (Vehicle vehicle in this.Slots)
+            {
+                if (vehicle != null)
+                {
+                    if (int.Parse(vehicle.LicenseNumber.Split("-")[1]) % 2 != 0) plate.Add(vehicle.LicenseNumber);
+                }
+            }
+            Console.Write("List of license number with odd plate: ");
+            if (plate.Count == 0) Console.WriteLine("None");
+            else
+            {
+                int count = 1;
+                foreach (var item in plate)
+                {
+                    if (count == 1) Console.Write($"{item}");
+                    else Console.Write($", {item}\n");
+                    count++;
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
