@@ -13,5 +13,10 @@ namespace ParkingSystem
         {
             this.Type = "Motorcycle";
         }
+
+        public override string ToString()
+        {
+            return $"{LicenseNumber}\t{Type}\t{Colour}";
+        }
     }
 }

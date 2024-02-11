@@ -39,28 +39,32 @@ namespace ParkingSystem
 
         }
 
-        public void Leave(Vehicle vehicle)
+        public void Leave(int slotNumber)
         {
-            for (int i = 0; i < Slots.Length; i++)
+            if (slotNumber < 1 || slotNumber > Slots.Length)
             {
-                if (Slots[i] == vehicle)
-                {
-                    Slots[i] = null;
-                    Console.WriteLine($"Slot number {i + 1} is free\n");
-                    break;
-                }
-                else Console.WriteLine("No such vehicle exist in our parking lot\n");
+                Console.WriteLine("There's no such number on the allocated slots");
+            }
+            else
+            {
+                Slots[slotNumber-1] = null;
+                Console.WriteLine($"Slot number {slotNumber} is free");
             }
         }
 
-        public void ParkingStatus()
+        public void DisplayParkingStatus()
         {
-            Console.WriteLine("Slot\tNo.\t\tType\tColour");
-            for (int i = 0; i < this.Slots.Length; i++)
+            bool empty = CheckIfParkingLotEmpty();
+            if (empty) Console.WriteLine("Parking lot is currently empty");
+            else
             {
-                Console.WriteLine($"{ i+ 1}\t{Slots[i]}");
+                Console.WriteLine("Slot\tNo.\t\tType\t\tColour");
+                for (int i = 0; i < this.Slots.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}\t{Slots[i]}");
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
         }
 
         public void CarCount()
@@ -161,6 +165,24 @@ namespace ParkingSystem
                 }
                 Console.WriteLine();
             }
+        }
+
+        public bool CheckIfParkingLotEmpty() 
+        {
+            foreach (Vehicle vehicle in Slots)
+            {
+                if (vehicle != null) return false;
+            }
+            return true;
+        }
+
+        public bool CheckIfParkingLotAvailable()
+        {
+            foreach (Vehicle vehicle in Slots)
+            {
+                if (vehicle == null) return true;
+            }
+            return false;
         }
     }
 }

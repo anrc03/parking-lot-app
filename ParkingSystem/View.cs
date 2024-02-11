@@ -113,29 +113,59 @@ namespace ParkingSystem
 
         void ParkACar()
         {
-            Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
-            Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|Please enter your vehicle info |");
-            string licenseNumber = Utility.InputLicenseNumber("Enter license number (X-XXXX-XXX format): ");
-            string colour = Utility.inputColour("Enter car colour: ");
-            this.parkingLot.Park(new Car(licenseNumber, colour));
+            bool available = this.parkingLot.CheckIfParkingLotAvailable();
+            if (available) {
+                Console.WriteLine("|-------------------------------|");
+                Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
+                Console.WriteLine("|-------------------------------|");
+                Console.WriteLine("Please enter your vehicle info");
+                string licenseNumber = Utility.HandlePlateInput("Enter license number (X-XXXX-XXX format): ");
+                string colour = Utility.HandleColourInput("Enter car colour: ");
+                this.parkingLot.Park(new Car(licenseNumber, colour));
+            }
+            else Console.WriteLine("Sorry, parking lot is full\n");
         }
 
         void ParkAMotorcycle()
         {
-            Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
-            Console.WriteLine("|-------------------------------|");
-            Console.WriteLine("|Please enter your vehicle info |");
-            string licenseNumber = Utility.InputLicenseNumber("Enter license number (X-XXXX-XXX format): ");
-            string colour = Utility.inputColour("Enter car colour: ");
-            this.parkingLot.Park(new Motorcycle(licenseNumber, colour));
+            bool available = this.parkingLot.CheckIfParkingLotAvailable();
+            if (available)
+            {
+                Console.WriteLine("|-------------------------------|");
+                Console.WriteLine("|+++++++ PARKING LOT APP +++++++|");
+                Console.WriteLine("|-------------------------------|");
+                Console.WriteLine("Please enter your vehicle info");
+                string licenseNumber = Utility.HandlePlateInput("Enter license number (X-XXXX-XXX format): ");
+                string colour = Utility.HandleColourInput("Enter motorcycle colour: ");
+                this.parkingLot.Park(new Motorcycle(licenseNumber, colour));
+            }
+            else Console.WriteLine("Sorry, parking lot is full\n");
         }
 
         void LeaveFromParkingLot()
         {
-            this.parkingLot.Leave(new Vehicle("b", "c"));
+            while (true)
+            {
+                bool empty = this.parkingLot.CheckIfParkingLotEmpty();
+                if (!empty)
+                {
+                    this.parkingLot.DisplayParkingStatus();
+                    Console.WriteLine("Enter the slot number of vehicle that's going to leave: ");
+                    string input = Console.ReadLine().Trim().ToLower();
+                    if (input == "exit") break;
+                    var isNumber = int.TryParse(input, out int slot);
+                    if (isNumber)
+                    {
+                        this.parkingLot.Leave(slot);
+                        break;
+                    }
+                    else continue;
+                }
+                else {
+                    Console.WriteLine("Parking lot is currently empty\n");
+                    break;
+                }
+            }
         }
 
         void PrintCheckInfoMenu()
@@ -161,7 +191,7 @@ namespace ParkingSystem
                 switch (input)
                 {
                     case "1":
-                        this.parkingLot.ParkingStatus();
+                        this.parkingLot.DisplayParkingStatus();
                         break;
                     case "2":
                         this.parkingLot.CheckOddPlate();

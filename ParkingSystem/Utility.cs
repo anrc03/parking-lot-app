@@ -10,12 +10,13 @@ namespace ParkingSystem
 {
     internal class Utility
     {
-        public static string InputLicenseNumber(string message)
+        public static string HandlePlateInput(string message)
         {
             while (true)
             {
                 Console.Write(message);
-                string licenseNumber = Console.ReadLine();
+                string licenseNumber = Console.ReadLine().Trim().ToLower();
+                if (licenseNumber == "exit") Environment.Exit(0);
                 string[] splitted = licenseNumber.Split("-");
                 if (splitted.Length != 3)
                 {
@@ -59,12 +60,13 @@ namespace ParkingSystem
             }
         }
 
-        public static string inputColour(string message)
+        public static string HandleColourInput(string message)
         {
             while(true)
             {
                 Console.Write(message);
-                string colour = Console.ReadLine();
+                string colour = Console.ReadLine().Trim().ToLower();
+                if (colour == "exit") Environment.Exit(0);
                 bool format = true;
                 foreach (var item in colour)
                 {

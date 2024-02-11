@@ -18,7 +18,7 @@ namespace ParkingSystem
         }
 
         public override string ToString() { 
-            return $"{LicenseNumber}\t{Type}\t{Colour}";
+            return $"{LicenseNumber}\t{Type}\t\t{Colour}";
         }
     }
 }
