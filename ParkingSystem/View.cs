@@ -59,6 +59,7 @@ namespace ParkingSystem
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         void PrintMenu()
@@ -109,6 +110,7 @@ namespace ParkingSystem
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         void ParkACar()
@@ -182,7 +184,7 @@ namespace ParkingSystem
             while (true)
             {
                 PrintCheckInfoMenu();
-                Console.Write("Choose a menu (1-5): ");
+                Console.Write("Choose a menu (1-7): ");
                 string input = Console.ReadLine().Trim().ToLower();
                 switch (input)
                 {
@@ -217,6 +219,7 @@ namespace ParkingSystem
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
     }
 }
